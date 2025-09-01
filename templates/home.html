@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div class="posts-grid">
+{% for post in posts %}
+  <div class="card">
+    {% if post.image %}
+      <img src="{{ post.image.url }}" alt="Post Image">
+    {% endif %}
+    {% if post.file %}
+      <p><a href="{{ post.file.url }}" download class="btn btn-success">Download File</a></p>
+    {% endif %}
+    <div class="card-body">
+      <p class="card-text">{{ post.text }}</p>
+      <a href="{% url 'feed:detail' post.id %}" class="btn btn-primary">View full image</a>
+    </div>
+  </div>
+{% empty %}
+  <p>No posts available.</p>
+{% endfor %}
+</div>
+{% endblock %}
